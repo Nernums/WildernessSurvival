@@ -15,7 +15,7 @@ own, proper file, or ensure that you state specifically where it is used in comm
 ////// Predefined Procedures ////////
 
 /mob/Move()
-	if(anchored)
+	if(src.anchored)
 		return
 	else
 		..()
@@ -42,4 +42,4 @@ own, proper file, or ensure that you state specifically where it is used in comm
 // to specific limbs.
 
 /mob/proc/take_damage(var/body/limb, damage)
-	limb.health -= damage
+	limb.health -= (damage - limb.robustness)

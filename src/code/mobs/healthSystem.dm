@@ -36,6 +36,8 @@ that humans don't necessarily have, for other races.
 	var/health_max
 	var/health
 
+	var/robustness //If it is more 'robust', it'll take less damage when hit. May be renamed... Currently arbitrary numbers.
+
 /body/New()
 	src.health = src.health_max
 
@@ -44,39 +46,42 @@ that humans don't necessarily have, for other races.
 /body/limb/right_arm
 	name = "right arm"
 	health_max = 100
+	robustness = 4
 
 //////// Left Arm ////////
 
 /body/limb/left_arm
 	name = "left arm"
 	health_max = 100
+	robustness = 4
 
 //////// Right Leg ////////
 
 /body/limb/right_leg
 	name = "right leg"
 	health_max = 100
+	robustness = 4
 
 //////// Left Leg ////////
 
 /body/limb/left_leg
 	name = "left leg"
 	health_max = 100
+	robustness = 4
 
 //////// Torso ////////
 
 /body/limb/torso
 	name = "torso"
-	health_max = 150
+	health_max = 100
+	robustness = 6
 
 //////// Head ////////
 
 /body/limb/head
 	name = "head"
-	health_max = 75
-
-
-/body/organ
+	health_max = 100
+	robustness = 2
 
 ////////////////////////////////////////////////////
 /////////////// Health Related Procs ///////////////
@@ -89,10 +94,19 @@ that humans don't necessarily have, for other races.
 /body/limb/proc/heal_all()
 	src.health = src.health_max
 
-/body/
+////// Check Damage ////////////
+// Currently called by the attack verb. I don't really like
+// how not-versatile this proc is, and it'll likely end up
+// changed or replaced.
 
-
-
+/mob/proc/check_damage(damage)
+	if(damage >= 100) return "cataclysmic"
+	if(damage >= 70) return "devastating"
+	if(damage >= 50) return "massive"
+	if(damage >= 20) return "large"
+	if(damage >= 10) return "fair"
+	if(damage >= 5) return "some"
+	if(damage >= 0) return "weak"
 
 
 

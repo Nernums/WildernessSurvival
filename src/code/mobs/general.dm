@@ -1,6 +1,8 @@
+/atom/movable
+	var/anchored = 0 // This is used when you want something unable to move/be picked up.
+
 /mob
 	var/busy = 0     // This is used when performing a task.
-	var/anchored = 0 // This is used when you want the player unable to move. If 1, they will be unable.
 
 // List of basic stats and such.
 
@@ -14,3 +16,7 @@
 
 	icon = 'src/sprites/mobs/player.dmi'
 	icon_state = "default"
+
+// Inventory
+
+	var/inventory = list()

@@ -23,8 +23,8 @@ for this area are appreciated.
 
 	if(statpanel("Inventory"))
 		var/obj/IND
-		for(IND in src.contents)
-			stat(IND.icon, IND)
+		for(IND in src.inventory)
+			stat("[IND.name]")
 
 ///////// Health /////////////
 

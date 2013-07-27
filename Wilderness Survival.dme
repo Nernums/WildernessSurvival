@@ -25,6 +25,12 @@
 #include "src\code\mobs\skills.dm"
 #include "src\code\mobs\statpanels.dm"
 #include "src\code\mobs\verbs.dm"
+#include "src\code\objs\consumable\-general.dm"
+#include "src\code\objs\consumable\drinkable.dm"
+#include "src\code\objs\consumable\edible.dm"
+#include "src\code\objs\flora\-general.dm"
+#include "src\code\objs\flora\growingProcs.dm"
+#include "src\code\objs\flora\trees.dm"
 #include "src\code\turfs\general.dm"
 #include "src\maps\debugging.dmm"
 // END_INCLUDE

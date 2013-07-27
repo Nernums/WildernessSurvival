@@ -1,0 +1,29 @@
+// DM Environment file for Archipelago-DV.dme.
+// All manual changes should be made outside the BEGIN_ and END_ blocks.
+// New source code should be placed in .dm files: choose File/New --> Code File.
+
+// BEGIN_INTERNALS
+// END_INTERNALS
+
+// BEGIN_FILE_DIR
+#define FILE_DIR .
+// END_FILE_DIR
+
+// BEGIN_PREFERENCES
+// END_PREFERENCES
+
+// BEGIN_INCLUDE
+#include "src\code\defaults.dm"
+#include "src\code\Login.dm"
+#include "src\code\admin\admin.dm"
+#include "src\code\admin\developer.dm"
+#include "src\code\admin\shared.dm"
+#include "src\code\mobs\general.dm"
+#include "src\code\mobs\healthSystem.dm"
+#include "src\code\mobs\skills.dm"
+#include "src\code\mobs\statpanels.dm"
+#include "src\code\mobs\verbs.dm"
+#include "src\code\turfs\general.dm"
+#include "src\maps\debugging.dmm"
+// END_INCLUDE
+

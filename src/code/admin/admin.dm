@@ -16,4 +16,11 @@ var/adminList = list()
 		usr.verbs += typesof(/staff/shared/proc/)
 		adminList += usr
 
-/staff/admin/proc/DEFINE()
+///////// Heal Entirely ////////////
+
+/staff/admin/proc/Heal(var/mob/m in world)
+	set category = "Admin"
+	var/body/limb/IND
+	for(IND in m.body)
+		IND.heal_all()
+	src << "You have successfully healed [m.name]."

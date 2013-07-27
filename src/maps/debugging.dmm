@@ -1,6 +1,7 @@
 "a" = (/turf/water,/area)
 "b" = (/turf/sand,/area)
 "c" = (/turf/grass,/area)
+"d" = (/mob,/turf/grass,/area)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -43,7 +44,7 @@ ccccccccbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 ccccccccbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 cccccccccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 cccccccccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-cccccccccbcccccccbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+cccccccdcbcccccccbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 ccccccccccccccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 ccccccccccccccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 ccccccccccccccccccccccccccccaaaaaaaaaaaaaaaaaaaaaa

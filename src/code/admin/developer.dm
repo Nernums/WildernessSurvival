@@ -16,4 +16,5 @@ var/devList = list()
 		usr.verbs += typesof(/staff/dev/proc/)
 		devList += usr
 
+// Temporary definition to have framework for code.
 /staff/dev/proc/DEFINE()

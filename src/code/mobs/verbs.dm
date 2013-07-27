@@ -20,7 +20,7 @@ should include the verb name.
 
 // Likely temporary.
 
-/mob/proc/attack(mob in view(1) )
-	var/body/limb = pick(src.body)
-	take_damage(limb, src.damage)
-	usr << "You have attacked [src]'s [limb.name] for 10!"
+/mob/proc/attack(var/mob/m in view(1) )
+	var/body/limb = pick(m.body)
+	m.take_damage(limb, src.damage)
+	usr << "You have attacked [m.name]'s [limb.name] for 10!"

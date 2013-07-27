@@ -78,13 +78,18 @@ that humans don't necessarily have, for other races.
 
 /body/organ
 
+////////////////////////////////////////////////////
+/////////////// Health Related Procs ///////////////
+////////////////////////////////////////////////////
 
+/////// Heal Completely ///////////
+// Currently called when being created, and also
+// called when created.
 
+/body/limb/proc/heal_all()
+	src.health = src.health_max
 
-
-
-
-
+/body/
 
 
 

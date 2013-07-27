@@ -20,6 +20,8 @@
 #include "src\code\admin\shared.dm"
 #include "src\code\mobs\general.dm"
 #include "src\code\mobs\healthSystem.dm"
+#include "src\code\mobs\mobProcs.dm"
+#include "src\code\mobs\needsSystem.dm"
 #include "src\code\mobs\skills.dm"
 #include "src\code\mobs\statpanels.dm"
 #include "src\code\mobs\verbs.dm"

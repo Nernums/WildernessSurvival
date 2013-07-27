@@ -3,11 +3,11 @@
 	icon_state = "default"
 	var/searchable = 1
 
-/turf/sand/verb/search()
+/turf/verb/search()
 	if(searchable && !usr.busy)
-		usr << "Searching..."
+		usr << "Searching through the [src.name]..."
 		usr.wait(50)
-		usr << "Searching complete."
+		usr << "Searching finished.."
 		src.searchable = 0
 		reset()
 		return
@@ -18,7 +18,7 @@
 		usr << "BUG"
 		return
 
-/turf/sand/proc/reset()
+/turf/proc/reset()
 	sleep(50)
 	searchable = 1
 

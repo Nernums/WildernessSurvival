@@ -12,7 +12,8 @@ for this area are appreciated.
 
 	if(statpanel("Stats"))
 		stat("Name: ",name)
-		stat("Health: ",health)
+		stat("Hunger: ",check_needs("hunger"))
+		stat("Thirst: ",check_needs("thirst"))
 		stat("Strength: ",strength)
 		stat("Endurance: ",endurance)
 		stat("Agility: ",agility)

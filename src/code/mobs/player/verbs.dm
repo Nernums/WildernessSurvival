@@ -12,30 +12,21 @@ should include the verb name.
 
 */
 
-/mob/New()
+/mob/player/New()
 	src.verbs += new /mob/proc/attack
-	src.verbs += new /mob/proc/pick_up
-	src.verbs += new /mob/proc/set_down
-	src.verbs += new /mob/proc/ingest
-	src.verbs += new /mob/proc/search
-	src.verbs += new /mob/proc/harvest
+	src.verbs += new /mob/player/proc/pick_up
+	src.verbs += new /mob/player/proc/set_down
+	src.verbs += new /mob/player/proc/ingest
+	src.verbs += new /mob/player/proc/search
+	src.verbs += new /mob/player/proc/harvest
 	..()
 
-
-
-///// Attack //////////////
-// Likely temporary.
-
-/mob/proc/attack (var/mob/m in view(1) )
-	var/body/limb = pick(m.body)
-	m.take_damage(limb, src.damage)
-	src << "You have attacked [m.name]'s [limb.name] for [check_damage(src.damage - limb.robustness)] damage!"
 
 
 
 ////// Pick Up ////////////
 
-/mob/proc/pick_up (var/obj/item in view(1) )
+/mob/player/proc/pick_up (var/obj/item in view(1) )
 	if(!item.anchored)
 		src.inventory += item
 		item.loc = src.inventory
@@ -45,7 +36,7 @@ should include the verb name.
 
 /////// Drop/Set Down /////
 
-/mob/proc/set_down (var/obj/item in src.inventory)
+/mob/player/proc/set_down (var/obj/item in src.inventory)
 	src.inventory -= item
 	item.loc = src.loc
 	usr << "You set down the [item.name]."
@@ -58,7 +49,7 @@ should include the verb name.
 // possibly even split this up into two verbs later.
 
 
-/mob/proc/ingest (var/obj/consumable/item in src.inventory)
+/mob/player/proc/ingest (var/obj/consumable/item in src.inventory)
 	src.need_less("hunger", item.sates)
 	src.need_less("thirst", item.slakes)
 	item.portions -= 1
@@ -73,7 +64,7 @@ should include the verb name.
 // Searches the turfs underneath,
 // like grass or sand. May need some work.
 
-/mob/proc/search ( var/turf/searched in oview(0) )
+/mob/player/proc/search ( var/turf/searched in oview(0) )
 	if(searched.searchable && !src.busy)
 		src << "Searching through the [searched.name]..."
 		src.wait(50)
@@ -89,7 +80,7 @@ should include the verb name.
 
 ///////// Harvest From Plant /////////
 
-/mob/proc/harvest ( var/obj/flora/harvested in oview(1) )
+/mob/player/proc/harvest ( var/obj/flora/harvested in oview(1) )
 	if (!harvested.harvestable || !harvested.amount_to_harvest || src.busy)
 		src << "You can't harvest from the [harvested.name] right now..."
 		return
@@ -103,3 +94,29 @@ should include the verb name.
 		usr << "You pick \a [picked.name] from the [harvested.name]!"
 		src.inventory += picked
 		picked.loc = src.inventory
+
+
+
+/////// Attacking another mob ////////
+// Increasing in complexity a bit. May need
+// to split this up into a few different procs.
+
+/mob/proc/attack (var/mob/target in view(1) )
+	if(!src.busy)
+		src << "You try to attack [target.name]!"
+		target << "[src.name] is trying to attack you!"
+		wait(10)
+
+		if(target in view(1))
+			var/body/limb = pick(target.body)
+			target.take_damage(limb, src.damage)
+			var/damage_amount = check_damage(src.damage - limb.robustness)
+			src << "You have attacked [target.name]'s [limb.name] for [damage_amount] damage!"
+			target << "You have been attacked by [src.name] on your [limb.name] for [damage_amount] damage!"
+			target.hit_by(src)
+
+		else
+			src << "They moved away!"
+
+	else
+		src << "You can't punch right now!"

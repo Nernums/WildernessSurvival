@@ -6,10 +6,12 @@ mobs, this will need to be made separate into its own files, and each mob will n
 or something with New() in order to have it gain the proper limbs and organs upon being created.
 
 */
+
 /mob
 	var/body = list()
 
-/mob/New()
+/mob/player/New()
+
 /*
 Needs to be placed into the body upon creation. We could just use
 the typesof() proc, but that will mean we don't have a list to view
@@ -94,6 +96,18 @@ that humans don't necessarily have, for other races.
 /body/limb/proc/heal_all()
 	src.health = src.health_max
 
+
+
+//////// Take Damage ////////////
+// Called by any procs trying to do damage
+// to something. Currently only causes damage
+// to specific limbs.
+
+/mob/proc/take_damage(var/body/limb, damage)
+	limb.health -= (damage - limb.robustness)
+
+
+
 ////// Check Damage ////////////
 // Currently called by the attack verb. I don't really like
 // how not-versatile this proc is, and it'll likely end up
@@ -107,6 +121,3 @@ that humans don't necessarily have, for other races.
 	if(damage >= 10) return "fair"
 	if(damage >= 5) return "some"
 	if(damage >= 0) return "weak"
-
-
-

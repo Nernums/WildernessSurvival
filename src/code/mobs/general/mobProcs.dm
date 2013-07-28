@@ -21,6 +21,10 @@ own, proper file, or ensure that you state specifically where it is used in comm
 		..()
 
 
+/mob/Click()
+	if(get_dist(src, usr) <= 1)
+		usr.attack(src)
+
 ///// Created Procedures ///////////
 
 //////// Wait ////////////
@@ -36,10 +40,11 @@ own, proper file, or ensure that you state specifically where it is used in comm
 	src.busy = 0
 
 
-//////// Take Damage ////////////
-// Called by any procs trying to do damage
-// to something. Currently only causes damage
-// to specific limbs.
 
-/mob/proc/take_damage(var/body/limb, damage)
-	limb.health -= (damage - limb.robustness)
+///////// Hit By /////////
+// Currently only used by the ai, when it is attacked,
+// in order to define a new target for the AI itself to attack.
+
+/mob/proc/hit_by(mob/m)
+	if(!target)
+		target = m

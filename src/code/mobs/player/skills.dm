@@ -8,7 +8,7 @@ name of the skill.
 /mob
 	var/skills = list()
 
-/mob/New()
+/mob/player/New()
 	skills += new /skill/foraging
 	skills += new /skill/fishing
 	skills += new /skill/swimming

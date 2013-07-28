@@ -14,6 +14,7 @@
 
 // Setting the default icon...
 
+/mob/player
 	icon = 'src/sprites/mobs/player.dmi'
 	icon_state = "default"
 

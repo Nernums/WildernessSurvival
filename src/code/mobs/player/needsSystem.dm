@@ -13,7 +13,7 @@ procs as needed.
 //////// Variable Definitions ////////////
 //////////////////////////////////////////
 
-/mob
+/mob/player
 	var/hunger_max = 100
 	var/hunger = 0
 
@@ -28,7 +28,7 @@ procs as needed.
 //////// Upon the creation of... /////////
 //////////////////////////////////////////
 
-/mob/New()
+/mob/player/New()
 	spawn(0) needs_system()
 	..()
 
@@ -47,7 +47,7 @@ procs as needed.
 // and organized here. If you add a need, you'll need
 // to add it to here.
 
-/mob/proc/needs_system()
+/mob/player/proc/needs_system()
 	need_more("hunger", 1)
 	need_more("thirst", 4)
 	sleep(pick(240, 320))
@@ -60,7 +60,7 @@ procs as needed.
 // but can be called from anywhere within
 // the source that is appropriate.
 
-/mob/proc/need_more(need, amount)
+/mob/player/proc/need_more(need, amount)
 
 	if(need == "hunger" && src.hunger < 100)
 		src.hunger += amount
@@ -77,7 +77,7 @@ procs as needed.
 // and negative numbers. Usually called when
 // eating food (once that is implemented).
 
-/mob/proc/need_less(need, amount)
+/mob/player/proc/need_less(need, amount)
 
 	if(need == "hunger" && src.hunger > 0)
 		src.hunger -= amount
@@ -91,7 +91,7 @@ procs as needed.
 // Checks up on the needs and returns a vague description.
 // This will be seen in stat-panels.
 
-/mob/proc/check_needs(need)
+/mob/player/proc/check_needs(need)
 
 	if(need == "hunger")
 

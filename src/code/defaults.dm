@@ -8,7 +8,7 @@ world
 
 	view = 8		// show up to 6 tiles outward from center (13x13 view)
 
-	mob = /mob/player
+	mob = /mob/human
 
 
 // Make objects move 8 pixels per tick when walking

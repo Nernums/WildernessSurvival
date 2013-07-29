@@ -39,12 +39,3 @@ own, proper file, or ensure that you state specifically where it is used in comm
 	src.anchored = 0
 	src.busy = 0
 
-
-
-///////// Hit By /////////
-// Currently only used by the ai, when it is attacked,
-// in order to define a new target for the AI itself to attack.
-
-/mob/proc/hit_by(mob/m)
-	if(!target)
-		target = m

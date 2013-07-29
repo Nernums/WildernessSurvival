@@ -6,7 +6,7 @@
 		src.verbs += typesof(/staff/shared/proc/)
 
 	if(src.ckey in devList)
-		src.verbs += typesof(/staff/dev/proc/)
+		src.verbs += typesof(/staff/developer/proc/)
 		src.verbs += typesof(/staff/shared/proc/)
 
 	..()

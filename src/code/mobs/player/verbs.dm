@@ -12,13 +12,13 @@ should include the verb name.
 
 */
 
-/mob/player/New()
+/mob/human/New()
 	src.verbs += new /mob/proc/attack
-	src.verbs += new /mob/player/proc/pick_up
-	src.verbs += new /mob/player/proc/set_down
-	src.verbs += new /mob/player/proc/ingest
-	src.verbs += new /mob/player/proc/search
-	src.verbs += new /mob/player/proc/harvest
+	src.verbs += new /mob/human/proc/pick_up
+	src.verbs += new /mob/human/proc/set_down
+	src.verbs += new /mob/human/proc/ingest
+	src.verbs += new /mob/human/proc/search
+	src.verbs += new /mob/human/proc/harvest
 	..()
 
 
@@ -26,7 +26,7 @@ should include the verb name.
 
 ////// Pick Up ////////////
 
-/mob/player/proc/pick_up (var/obj/item in view(1) )
+/mob/human/proc/pick_up (var/obj/item in view(1) )
 	if(!item.anchored)
 		src.inventory += item
 		item.loc = src.inventory
@@ -36,7 +36,7 @@ should include the verb name.
 
 /////// Drop/Set Down /////
 
-/mob/player/proc/set_down (var/obj/item in src.inventory)
+/mob/human/proc/set_down (var/obj/item in src.inventory)
 	src.inventory -= item
 	item.loc = src.loc
 	usr << "You set down the [item.name]."
@@ -49,7 +49,7 @@ should include the verb name.
 // possibly even split this up into two verbs later.
 
 
-/mob/player/proc/ingest (var/obj/consumable/item in src.inventory)
+/mob/human/proc/ingest (var/obj/consumable/item in src.inventory)
 	src.need_less("hunger", item.sates)
 	src.need_less("thirst", item.slakes)
 	item.portions -= 1
@@ -64,7 +64,7 @@ should include the verb name.
 // Searches the turfs underneath,
 // like grass or sand. May need some work.
 
-/mob/player/proc/search ( var/turf/searched in oview(0) )
+/mob/human/proc/search ( var/turf/searched in oview(0) )
 	if(searched.searchable && !src.busy)
 		src << "Searching through the [searched.name]..."
 		src.wait(50)
@@ -80,7 +80,7 @@ should include the verb name.
 
 ///////// Harvest From Plant /////////
 
-/mob/player/proc/harvest ( var/obj/flora/harvested in oview(1) )
+/mob/human/proc/harvest ( var/obj/flora/harvested in oview(1) )
 	if (!harvested.harvestable || !harvested.amount_to_harvest || src.busy)
 		src << "You can't harvest from the [harvested.name] right now..."
 		return

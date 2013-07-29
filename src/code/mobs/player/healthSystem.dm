@@ -10,7 +10,7 @@ or something with New() in order to have it gain the proper limbs and organs upo
 /mob
 	var/body = list()
 
-/mob/player/New()
+/mob/human/New()
 
 /*
 Needs to be placed into the body upon creation. We could just use

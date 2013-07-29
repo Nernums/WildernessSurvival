@@ -2,7 +2,7 @@
 	icon = 'src/sprites/objs/flora/trees.dmi'
 	icon_state = "appletree"
 
-/mob/ai/New()
+/mob/New()
 	src.body += new /body/limb/right_arm
 	src.body += new /body/limb/left_arm
 	src.body += new /body/limb/right_leg

@@ -6,7 +6,7 @@ for this area are appreciated.
 */
 
 
-/mob/player/Stat()
+/mob/human/Stat()
 
 ///////// Basic Stats-- Not much detail here. //////////
 

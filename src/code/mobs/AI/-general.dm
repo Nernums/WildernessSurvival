@@ -12,16 +12,14 @@ stay the same.
 
 /mob/ai/New()
 	..()
-	spawn(rand(10,30)) src.AI()
-
-
+	spawn(10) AI()
 
 ///// Main AI Procedure ////////
 // This is definitely going to need to be reworked at a point,
 // preferably as a datum to be able to give to specific creatures
 // that need it.
 
-/mob/proc/AI()
+/mob/ai/proc/AI()
 	if(target)
 		aggressive()
 
@@ -37,7 +35,7 @@ stay the same.
 // The aggressive behavior that happens when the AI has a target.
 // It's fairly simple.
 
-/mob/proc/aggressive()
+/mob/ai/proc/aggressive()
 	if(get_dist(src, target ) > 1)
 		step_to(src, target)
 		sleep(1)
@@ -45,3 +43,13 @@ stay the same.
 	else
 		attack(target)
 		sleep(10)
+
+
+
+///// Hit By ////////////
+// Currently only used by the ai, when it is attacked,
+// in order to define a new target for the AI itself to attack.
+
+/mob/proc/hit_by(mob/m)
+	if(!target)
+		target = m

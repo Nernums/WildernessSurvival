@@ -4,6 +4,8 @@
 
 var/adminList = list()
 
+
+
 ////// CREATE ADMIN /////////
 
 /client/verb/admin()
@@ -15,6 +17,8 @@ var/adminList = list()
 		usr.verbs += typesof(/staff/admin/proc/)
 		usr.verbs += typesof(/staff/shared/proc/)
 		adminList += usr
+
+
 
 ///////// Heal Entirely ////////////
 

@@ -4,6 +4,8 @@
 
 var/devList = list()
 
+
+
 ////// CREATE DEVELOPER /////////
 
 /client/verb/developer()
@@ -11,10 +13,12 @@ var/devList = list()
 
 	var/password = input("Developer Password -- DEBUG") as null|text
 
-	if(password == "DEBUG")
+	if(password == "DEBUG" && usr.ckey == "deciusreln") // The ckey is only temporary, to allow updating of hosting.
 		usr.verbs += typesof(/staff/developer/proc/)
 		usr.verbs += typesof(/staff/developer/proc/)
 		devList += usr
+
+
 
 /////////// Updating! //////////
 // Allows a developer to update the code manually

@@ -1,55 +1,83 @@
 /*
 
-Here is the AI of the project. It's currently very basic and will be entirely reworked
-at a point, but for something simple to build on, it should work for now. Uses the type
-"/mob/ai/ when a new creature is made, which annoys me to no end-- Don't expect that to
-stay the same.
+The AI of the project. Important things to know for anyone interested in working with this part is that
+the AI is very basic for the moment-- That said, as is obvious, when a new mob is created and it is an
+NPC, it will automatically have a new type of /ai generated in it. It will also pass a reference to itself
+as the AI's owner, which the AI code uses to manipulate the mob's behavior and use the mob's procs.
+
+Thanks to Zuhayr for answering a few silly questions to help with this.
 
 */
 
+///////// Necessary ///////////
+// A few necessary things for mobs
+// to do in order to make this work.
+
 /mob
-	var/target
+	var/ai/ai
+	var/NPC
 
-/mob/ai/New()
+/mob/New()
+	if(NPC)
+		ai = new /ai
+		src.ai.owner = src
 	..()
-	spawn(10) AI()
 
-///// Main AI Procedure ////////
-// This is definitely going to need to be reworked at a point,
-// preferably as a datum to be able to give to specific creatures
-// that need it.
 
-/mob/ai/proc/AI()
-	if(target)
+
+//////// AI definition ////////
+// Variables for the AI to use are defined here.
+// It also includes, obviously, the beginning of the
+// AI loop.
+
+/ai
+	var/mob/owner
+	var/tmp/target
+	var/tmp/behavior
+
+/ai/New()
+	spawn(rand(10,50)) AI()
+	..()
+
+/////// Main AI Proc //////////
+// This is the main AI proc. It, and the two procedures that it calls
+// are the main part of the AI. If you want to add any AI behavior,
+// you'll need to make sure that you add it to both procs-- update
+// behavior to make sure that it can be triggered, and perform behavior
+// just as a pointer to the proc that it will call. Definitions do belong
+// in either of these. If you create a new behavior, please create a macro
+// to refer to it as.
+
+#define IDLE 0
+#define AGGRESSIVE 1
+
+/ai/proc/AI()
+
+	update_behavior()
+	perform_behavior()
+
+	spawn(2) AI()
+
+
+
+//////// Perform Behavior /////////
+// Basically the list of behaviors, and what to do for each behavior.
+// It should be as simple as setting off the behavior's specific proc.
+
+/ai/proc/perform_behavior()
+	if(behavior == AGGRESSIVE)
 		aggressive()
-
-	else
-		step_rand(src)
-		sleep(20)
-
-	spawn() AI()
+	if(behavior == IDLE)
+		idle()
 
 
 
-///// Aggressive /////////
-// The aggressive behavior that happens when the AI has a target.
-// It's fairly simple.
+//////// Update Behavior ///////////
+// Updates the behavior depending on different circumstances. You define
+// the circumstances here. It may end up needing its own file at a point.
 
-/mob/ai/proc/aggressive()
-	if(get_dist(src, target ) > 1)
-		step_to(src, target)
-		sleep(1)
-
-	else
-		attack(target)
-		sleep(10)
-
-
-
-///// Hit By ////////////
-// Currently only used by the ai, when it is attacked,
-// in order to define a new target for the AI itself to attack.
-
-/mob/proc/hit_by(mob/m)
+/ai/proc/update_behavior()
+	if(target)
+		behavior = AGGRESSIVE
 	if(!target)
-		target = m
+		behavior = IDLE

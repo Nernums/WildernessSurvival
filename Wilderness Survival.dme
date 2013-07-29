@@ -20,6 +20,8 @@
 #include "src\code\admin\shared.dm"
 #include "src\code\mobs\-general.dm"
 #include "src\code\mobs\AI\-general.dm"
+#include "src\code\mobs\AI\behavior.dm"
+#include "src\code\mobs\AI\helperProcs.dm"
 #include "src\code\mobs\general\mobProcs.dm"
 #include "src\code\mobs\player\healthSystem.dm"
 #include "src\code\mobs\player\needsSystem.dm"

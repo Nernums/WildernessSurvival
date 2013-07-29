@@ -1,3 +1,12 @@
+/*
+
+Whenever you create a new mob, you'll need to ensure that it is a child of a mob that already has its
+limbs defined, or that you define the limbs yourself. Furthermore, you'll need to ensure that you properly
+set the 'NPC' variable-- If it is an NPC, it'll need to be 1 in order to have AI. This may get more complicated
+later, but for now all mobs share the same AI.
+
+*/
+
 /atom/movable
 	var/anchored = 0 // This is used when you want something unable to move/be picked up.
 

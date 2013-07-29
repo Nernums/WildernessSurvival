@@ -111,12 +111,15 @@ should include the verb name.
 			var/body/limb = pick(target.body)
 			target.take_damage(limb, src.damage)
 			var/damage_amount = check_damage(src.damage - limb.robustness)
+
 			src << "You have attacked [target.name]'s [limb.name] for [damage_amount] damage!"
 			target << "You have been attacked by [src.name] on your [limb.name] for [damage_amount] damage!"
-			target.hit_by(src)
+
+			if(target.NPC) // This might be removed later, if hit_by is changed to a general mob proc.
+				target.ai.hit_by(src)
 
 		else
-			src << "They moved away!"
+			src << "You try to hit... and miss."
 
 	else
 		src << "You can't punch right now!"
